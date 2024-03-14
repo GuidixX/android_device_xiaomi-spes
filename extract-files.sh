@@ -53,6 +53,24 @@ if [ -z "${SRC}" ]; then
     SRC="adb"
 fi
 
+
+function blob_fixup() {
+    case "${1}" in
+        vendor/etc/init/android.hardware.neuralnetworks@1.3-service-qti.rc)
+            sed -i "s|writepid /dev/stune/nnapi-hal/tasks|task_profiles NNApiHALPerformance|g" "${2}"
+            ;;
+        vendor/lib64/vendor.qti.hardware.camera.postproc@1.0-service-impl.so)
+            "${SIGSCAN}" -p "13 0A 00 94" -P "1F 20 03 D5" -f "${2}"
+            ;;
+        vendor/lib64/camera/components/com.qti.node.mialgocontrol.so)
+            "${PATCHELF}" --add-needed "libpiex_shim.so" "${2}"
+            ;;
+        vendor/lib64/camera/components/com.qti.node.mialgocontrol.so)
+            llvm-strip --strip-debug  "${2}"
+            ;;
+    esac
+}
+
 # Initialize the helper for common device
 setup_vendor "${DEVICE}" "${VENDOR}" "${ANDROID_ROOT}" true "${CLEAN_VENDOR}"
 
