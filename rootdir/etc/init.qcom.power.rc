@@ -115,6 +115,9 @@ on early-init
     write /sys/bus/platform/devices/4804000.ufshc/clkscale_enable 0
 
 on init
+    # Migrate tasks again in case kernel threads are created during boot
+    copy_per_line /dev/cpuctl/tasks /dev/cpuctl/system/tasks
+    
     # Setup permission for Power HAL
     chown system system /dev/cpu_dma_latency
     chmod 0664 /dev/cpu_dma_latency
