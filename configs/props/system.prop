@@ -100,6 +100,12 @@ iorapd.perfetto.enable=false
 iorapd.readahead.enable=false
 persist.device_config.runtime_native_boot.iorap_readahead_enable=false
 
+# Havoc-OS
+ro.havoc.device.name=Xiaomi Redmi Note 11
+ro.havoc.group.url=https://t.me/dragonturbo
+ro.havoc.maintainer=GuidixX
+ro.havoc.maintainer.username=GuidixX
+
 # Logs
 persist.log.tag.AnalyticsService=S
 persist.log.tag.KernelCpuUidActiveTimeReader=S
