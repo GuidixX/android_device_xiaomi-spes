@@ -18,7 +18,13 @@ persist.vendor.service.bdroid.soc.alwayson=true
 ro.bluetooth.library_name=libbluetooth_qti.so
 ro.bluetooth.emb_wp_mode=false
 ro.bluetooth.wipower=false
-ro.telephony.call_ring.delay=0
+
+# Blur
+ro.sf.blurs_are_expensive=1
+ro.surface_flinger.supports_background_blur=1
+ro.launcher.blur.appLauncher=0
+ro.launcher.blur.appLaunch=0
+persist.sys.sf.enable_blurs=1
 
 # Battery Saving
 ro.vendor.use_data_netmgrd=true 
@@ -29,7 +35,6 @@ pm.sleep_mode=1
 
 # Camera
 camera.disable_zsl_mode=1
-vendor.camera.aux.packagelist=com.android.camera,app.grapheneos.camera,org.lineageos.aperture,org.lineageos.aperture.dev
 
 # Charger
 persist.vendor.quick.charge=1
@@ -43,54 +48,10 @@ persist.vendor.cne.feature=1
 debug.force_no_blanking=true
 debug.sf.enable_hwc_vds=1
 persist.demo.hdmirotationlock=false
-debug.sf.disable_backpressure=1
-debug.sf.latch_unsignaled=1
-debug.sf.early_phase_offset_ns=500000
-debug.sf.early_app_phase_offset_ns=500000
-debug.sf.early_gl_phase_offset_ns=3000000
-debug.sf.early_gl_app_phase_offset_ns=15000000
-debug.sf.high_fps_late_sf_phase_offset_ns=-5000000
-debug.sf.high_fps_late_app_phase_offset_ns=1000000
-ro.surface_flinger.vsync_event_phase_offset_ns=2000000
-ro.surface_flinger.vsync_sf_event_phase_offset_ns=6000000
-ro.surface_flinger.refresh_rate_switching=false
-ro.surface_flinger.enable_frame_rate_override=false
-ro.surface_flinger.use_content_detection_for_refresh_rate=false
-
-# GpuBoost
-debug.composition.type=c2d
-debug.composition.type=gpu
-debug.enabletr=true
-debug.overlayui.enable=1
-debug.performance.tuning=1
-debug.hwui.renderer=true
-hw3d.force=1
-hwui.disable_vsync=true
-hwui.render_dirty_regions=false
-persist.sys.composition.type=c2d
-persist.sys.composition.type=gpu
-persist.sys.ui.hw=1
-ro.config.enable.hw_accel=true
-ro.product.gpu.driver=1
-ro.fb.mode=1
-ro.sf.compbypass.enable=0
-video.accelerate.hw=1
-debug.egl.hw=0
-debug.gralloc.gfx_ubwc_disable=0
-debug.mdpcomp.logs=0
-persist.vendor.color.matrix=2
-vendor.gralloc.disable_ubwc=0
-ro.vendor.qti.sys.fw.bg_apps_limit=120
-ro.vendor.qti.sys.fw.bservice_enable=true
-ro.vendor.qti.core.ctl_max_cpu=4
-ro.vendor.qti.core.ctl_min_cpu=2
-
-# Blur
-ro.sf.blurs_are_expensive=1
-ro.surface_flinger.supports_background_blur=1
-ro.launcher.blur.appLaunch=0
+persist.sys.sf.use_shadow=1
 
 # FP
+sys.fp.miui.token=0
 ro.hardware.fp.sideCap=true
 
 # Fwk detect
@@ -106,6 +67,9 @@ ro.iorapd.enable=false
 iorapd.perfetto.enable=false
 iorapd.readahead.enable=false
 persist.device_config.runtime_native_boot.iorap_readahead_enable=false
+
+# Logs
+persist.log.tag.OpenGLRenderer=S
 
 # Logs
 persist.log.tag.AnalyticsService=S
@@ -130,7 +94,6 @@ media.stagefright.enable-player=true
 media.stagefright.enable-qcp=true
 media.stagefright.enable-scan=true
 media.stagefright.thumbnail.prefer_hw_codecs=true
-ro.media.recorder-max-base-layer-fps=60
 mmp.enable.3g2=true
 persist.mm.enable.prefetch=true
 
@@ -195,9 +158,10 @@ persist.data.df.ul_mode=5
 persist.data.wda.enable=true
 persist.rmnet.data.enable=true
 
-# Skia
+# SkiaGL Threaded
+debug.renderengine.backend=skiaglthreaded
+renderthread.skia.reduceopstasksplitting=true 
 debug.hwui.skia_atrace_enabled=false
-renderthread.skia.reduceopstasksplitting=true
 
 # Time-services
 persist.timed.enable=true
