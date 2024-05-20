@@ -424,3 +424,30 @@ on property:sys.boot_completed=1
     # Restrict permissions to socket file
     # to hide Magisk & co.
     chmod 440 /proc/net/unix
+
+on property:ro.boot.hwversion=*
+    setprop vendor.boot.hwversion ${ro.boot.hwversion}
+
+service vendor.imsdatadaemon /vendor/bin/imsdatadaemon
+    override
+    class main
+    user radio
+    socket ims_datad stream 0660 system radio
+    group radio wifi inet vendor_qti_diag log
+    disabled
+
+# Set permissive on offline charging mode
+service set_permissive_chg /vendor/bin/set_permissive.sh
+    class main
+    user root
+    seclabel u:r:su:s0
+    disabled
+    oneshot
+
+# Fix Dirty flash
+service fix_contexts /vendor/bin/fix_contexts.sh
+    class main
+    user root
+    seclabel u:r:su:s0
+    disabled
+    oneshot
